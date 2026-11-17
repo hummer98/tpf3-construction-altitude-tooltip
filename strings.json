@@ -1,0 +1,41 @@
+{
+	"en": {
+		"cht_altitude": "Altitude"
+	},
+	"ja": {
+		"cht_altitude": "標高"
+	},
+	"de": {
+		"cht_altitude": "Höhe"
+	},
+	"es": {
+		"cht_altitude": "Altitud"
+	},
+	"fr": {
+		"cht_altitude": "Altitude"
+	},
+	"it": {
+		"cht_altitude": "Altitudine"
+	},
+	"ko": {
+		"cht_altitude": "고도"
+	},
+	"nl": {
+		"cht_altitude": "Hoogte"
+	},
+	"pl": {
+		"cht_altitude": "Wysokość"
+	},
+	"pt_BR": {
+		"cht_altitude": "Altitude"
+	},
+	"ru": {
+		"cht_altitude": "Высота"
+	},
+	"zh_CN": {
+		"cht_altitude": "海拔"
+	},
+	"zh_TW": {
+		"cht_altitude": "海拔"
+	}
+}
