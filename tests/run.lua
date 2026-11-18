@@ -483,5 +483,19 @@ test("modId, folder name and every require prefix agree", function()
 	end
 end)
 
+-- the README is the GitHub landing page; both languages must point at the
+-- published mod.io page, not the pre-release placeholder
+test("README links the mod.io page in both languages", function()
+	local f = assert(io.open(root .. "/README.md"))
+	local src = f:read("*a")
+	f:close()
+	local url = "https://mod.io/g/transportfever3/m/construction-altitude-tooltip"
+	local split = assert(src:find("\n## 日本語", 1, true), "Japanese section")
+	assert(src:sub(1, split):find(url, 1, true), "English section link")
+	assert(src:sub(split):find(url, 1, true), "Japanese section link")
+	assert(not src:find("link follows after", 1, true), "English placeholder left")
+	assert(not src:find("リンクを載せます", 1, true), "Japanese placeholder left")
+end)
+
 print(string.format("\n%d passed, %d failed", passes, failures))
 os.exit(failures == 0 and 0 or 1)

@@ -33,8 +33,7 @@ point, below the cost.
 
 ## Install
 
-- mod.io: subscribe in the game's mod hub (link follows after the first
-  upload).
+- mod.io: <https://mod.io/g/transportfever3/m/construction-altitude-tooltip> (or subscribe in the game's mod hub).
 - Manually: the game loads a local mod only from a folder named exactly
   `hummer_construction_altitude_tooltip_1` inside
   `<Steam>/userdata/<your id>/3493540/local/mods/`.
@@ -110,7 +109,7 @@ Tool tests: `python3 -m unittest discover -s tests`.
 
 ### 導入
 
-- mod.io：ゲーム内の MODハブから購読できます（最初のアップロード後にリンクを載せます）。
+- mod.io：<https://mod.io/g/transportfever3/m/construction-altitude-tooltip>（ゲーム内の MODハブからも購読できます）
 - 手動：ゲームは `<Steam>/userdata/<ID>/3493540/local/mods/` の中の、
   名前がちょうど `hummer_construction_altitude_tooltip_1` のフォルダからだけ読み込みます。
   - リリースの zip から：そのフォルダを作り、その**中に** zip を展開します（zip には外側のフォルダがありません）。
