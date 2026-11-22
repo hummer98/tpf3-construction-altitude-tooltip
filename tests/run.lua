@@ -388,7 +388,11 @@ test("_metadata/modinfo.json: readable name, summary, author, tag", function()
 	for k in pairs(info) do keys[#keys + 1] = k end
 	table.sort(keys)
 	eq(table.concat(keys, ","), "authors,description,name,summary,tags,url")
-	eq(info.name, "Construction Altitude Tooltip / 建設時の標高表示")
+	-- English only (user, 2026-11-22): the mod list and mod.io show one name
+	-- for every language; Japanese stays in the summary and description
+	eq(info.name, "Construction Altitude Tooltip")
+	assert(not info.name:find("[\128-\255]"), "name must be plain ASCII")
+	assert(info.summary:find(" / ", 1, true) and info.summary:find("[\128-\255]"), "summary keeps the Japanese half")
 	-- mod.io limits, counted in characters (UTF-8 lead bytes)
 	local function chars(str) return select(2, str:gsub("[^\128-\191]", "")) end
 	assert(chars(info.name) <= 50, "name too long for mod.io")

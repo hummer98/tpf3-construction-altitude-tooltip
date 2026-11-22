@@ -7,6 +7,11 @@ mod's `revision` in `mod.json` is MAJOR * 10000 + MINOR * 100 + PATCH.
 
 ## [Unreleased]
 
+### Changed
+- The mod's name in the game's mod list and on mod.io is now English only:
+  "Construction Altitude Tooltip". The Japanese name stays in the summary,
+  the description and the README.
+
 ## [1.0.0] - 2026-11-18
 
 Published on mod.io and GitHub as revision 1, before the mod had version

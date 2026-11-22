@@ -52,7 +52,7 @@ The code is plain Lua (`content/gui/`):
 | `cht_core.lua` | Pure helpers (which origin, text), no engine access |
 | `cht.script.lua` | Wraps `construction_react_util.getActionParams` and adds the line through the action's `getProposalStringsFn` |
 | `cht.res.lua` | Hook run at UI start-up |
-| `_metadata/modinfo.json` | Name, summary and description for the game's mod list and the in-game mod.io upload. The game shows one text for all languages, so the name is "English / 日本語" and the description has a section per language |
+| `_metadata/modinfo.json` | Name, summary and description for the game's mod list and the in-game mod.io upload. The game shows one text for all languages, so the name is in English only (at most 50 characters for mod.io), the summary is "English / 日本語" and the description has a section per language |
 | `_metadata/0.png` | Cover image (required by the in-game uploader, also shown in the mod list) |
 | `docs/modio_description.md` | The same description for the mod.io web page |
 | `docs/release.md` | Versions and the release steps (Japanese) |
