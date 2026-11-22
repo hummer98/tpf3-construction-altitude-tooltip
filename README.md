@@ -55,6 +55,9 @@ The code is plain Lua (`content/gui/`):
 | `_metadata/modinfo.json` | Name, summary and description for the game's mod list and the in-game mod.io upload. The game shows one text for all languages, so the name is "English / 日本語" and the description has a section per language |
 | `_metadata/0.png` | Cover image (required by the in-game uploader, also shown in the mod list) |
 | `docs/modio_description.md` | The same description for the mod.io web page |
+| `docs/release.md` | Versions and the release steps (Japanese) |
+| `VERSION` | The version (`MAJOR.MINOR.PATCH`); `mod.json`'s revision is MAJOR * 10000 + MINOR * 100 + PATCH |
+| `CHANGELOG.md` | Changes per version ([Keep a Changelog](https://keepachangelog.com/en/1.1.0/)); new ones go under `## [Unreleased]` |
 
 Tests run offline with LuaJIT and stub the game API:
 
@@ -68,9 +71,21 @@ game needs (no `.git`, tests or tools). LICENSE stays out too: the game's mod
 validation rejects files without an allowed extension, so the mod
 description states the licence and links here instead.
 
-To publish an update, raise `revision` in `mod.json`, commit, then run
-`python3 tools/stage.py`. It runs the same checks, refuses uncommitted
-changes or an unraised revision, and rebuilds the game's staging copy
+Versions and releases ([docs/release.md](docs/release.md)): write each
+change under `## [Unreleased]` in `CHANGELOG.md`. To release, in a
+development clone (not the copy in `local/mods/`), run
+`python3 tools/release.py patch|minor|major|X.Y.Z` (`--dry-run` first). It
+writes `VERSION`, the revision and the changelog section, runs the tests,
+commits `Release vX.Y.Z`, tags `vX.Y.Z`, builds
+`dist/hummer_construction_altitude_tooltip-vX.Y.Z.zip` and, with the
+`github` remote, pushes the branch and that tag and creates the GitHub
+release with the section as its notes. The tests fail when `VERSION`, the
+revision and the changelog disagree.
+
+To publish a release on mod.io, with the game stopped, pull it into the
+copy in `local/mods/` and run `python3 tools/stage.py` there. It runs the
+same checks, refuses uncommitted changes or an unraised revision, and
+rebuilds the game's staging copy
 (`local/staging_area/hummer_construction_altitude_tooltip_1`) while keeping
 the `_metadata/mod.io_fileid.txt` the game wrote at the first upload, which is
 what makes the upload update this mod instead of creating a new one. Then in
