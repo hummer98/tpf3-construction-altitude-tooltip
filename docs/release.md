@@ -31,6 +31,16 @@
 
 前提: 作業ツリーがコミット済み、`master`（`--branch` で変更）を checkout している、`luajit` と、GitHub に出すなら `gh` がある。
 
+コミットとタグの作者は、git の設定に頼らず環境変数で指定して走らせる（`git config` は書かない）:
+
+```sh
+GIT_AUTHOR_NAME=hummer GIT_AUTHOR_EMAIL=rr.yamamoto@gmail.com \
+GIT_COMMITTER_NAME=hummer GIT_COMMITTER_EMAIL=rr.yamamoto@gmail.com \
+python3 tools/release.py patch
+```
+
+途中の確認で `warning: uncommitted changes:`（VERSION・mod.json・CHANGELOG.md）が出るのは想定どおり。release がそれらを書いた後、コミットの前に確認を走らせるため。
+
 **ゲームが読んでいるフォルダ（`local/mods/` の下）では走らせない。** release はファイルを書き換え、`dist/` を作る。ゲームの起動中に MOD のフォルダが変わるとゲームが落ちることがある。release は開発用の clone で行い、`local/mods/` へはゲームを止めてから取り込む。コミットの作者は git の設定か `GIT_AUTHOR_*` / `GIT_COMMITTER_*`（この道具は何も設定しない）。
 
 ```sh
@@ -61,6 +71,7 @@ python3 tools/release.py --github-only        # HEAD のタグの push と GitHu
 - 2026-11-18 に GitHub と mod.io へ revision 1 で公開した。そのときは `VERSION` も `CHANGELOG.md` も無かった。
 - 版の仕組みを入れたとき（2026-11-22）、その状態を 1.0.0 とし、`VERSION` を 1.0.0、revision を 10000 にして、`CHANGELOG.md` に `## [1.0.0] - 2026-11-18` を書いた。1.0.0 のタグは作っていない（公開したコミットは版の仕組みの前のもので、`VERSION` が無いため）。
 - 版の付いた最初の release は 1.0.1（revision 10001）。mod.io にあるのは revision 1 なので、`stage.py` の確認（アップロード済みより大きい）は通る。
+- 1.0.1 の release より前のコミット（revision 10000）は stage しない。10000 > 1 なので `stage.py` は止めないが、タグの無い状態が mod.io に上がってしまう。
 
 ## 更新（1.0.2 など）
 
